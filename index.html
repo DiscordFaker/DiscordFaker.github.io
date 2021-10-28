@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p.usr {
+	font-family: "Arial";
+    color: White;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 700;
+    transform: translateY(-76px);
+    position: absolute;
+    left: 70px;
+}
+p.txt {
+	font-family: "Arial";
+    color: White;
+    font-size: 1.2rem;
+    text-decoration: none;
+    position: absolute;
+    transform: translateY(-49px);
+    left: 70px;
+}
+span.date {
+	color: #6f757d;
+	font-family: "Arial";
+    font-size: .8rem;
+    text-decoration: none;
+    transform: translateY(5px) translateX(10px);
+}
+div.inp {
+	position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(-3px) translateX(-3px);
+}
+body { background-color: #424549; }
+img.pfp { border-radius: 50%; }
+a.lul {
+	color: white;
+    text-decoration: none;
+}
+a.lul:hover {
+	text-decoration: underline 2px;
+}
+a.pfp:hover {
+	filter: drop-shadow(.01px .01px 3px #000);
+}
+
+</style>
+</head>
+<body>
+<div id="conversation">
+
+</div>
+<div class="inp" id="inputs">
+<input id="usrname" value="username" size="3"></input>
+<input id="pfp" value="pfp URL" size="2"></input>
+<input id="time" value="Today at 08:30 AM" size="10"></input>
+<input id="msg" value="Hello." size="4"></input>
+<input id="color" value="#FFFFFF" size="4" type="color"></input>
+<button onclick="addMsg(document.getElementById('usrname').value,document.getElementById('msg').value, document.getElementById('time').value, document.getElementById('pfp').value);">Add message</button><br>
+<button onclick='document.getElementById("conversation").innerHTML = "";'>Reset conversation</button>
+</div>
+<script>
+	
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes();
+if (today.getHours() < 12) { 
+	var amorpm = "AM";
+} else { 
+	var amorpm = "PM"; 
+}
+document.getElementById("time").value = "Today at " + time + " " + amorpm;
+
+
+function addMsg(usr,msg,time,pfpURL) {
+	if (usr.toLowerCase() == "itzsten" || usr.toLowerCase() == "ltzsten" || usr.toLowerCase().includes("sten")) { return alert("Hey Omar \"pro\" gamer, don't try to fake messages of me!"); }
+	document.getElementById('conversation').innerHTML += '<div class="msg"><a href="#" class="pfp"><img  class="pfp" src="' + pfpURL + '" width="50" height="50"></img></a><p class="usr" id="username"><a href="#" class="lul" style="color: ' + document.getElementById("color").value + ';">' + usr +'</a><span class="date"> &nbsp;&nbsp;&nbsp;' + time + '</span></p></a><p class="txt">' + msg.replaceAll('\n','<br>') + '</p></div>' + '<br>'.repeat(msg.split('\n').length);
+}
+</script>
+
+</body>
+</html>
